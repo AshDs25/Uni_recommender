@@ -8,6 +8,7 @@ from flask_cors import CORS
 from nltk.tokenize import word_tokenize
 from gensim.models import Word2Vec
 from sklearn.metrics.pairwise import cosine_similarity
+from fetchData import fetch
 nltk.download('punkt')
 
 app = Flask(__name__)
@@ -25,16 +26,10 @@ with open('num_data.pkl', 'rb') as f:
 with open('university_names.pkl', 'rb') as f:
     University = pickle.load(f)
 
-
-
-
-
-
 def reshape_vector(vector):
   shape = vector.shape
   reshaped_vector = vector.reshape(shape[1],100)
   return reshaped_vector
-
 
 #Similarity lists
 sim = []
@@ -88,10 +83,6 @@ def euclidean_sim(user_score, user_dur,user_fee):
     euc_sim.append(sim)
 
 
-
-
-
-
 @app.route('/top_10_universities',methods=['POST'])
 def get_top_10_universities():
     
@@ -143,20 +134,13 @@ def get_top_10_universities():
             added_universities.add(university)
             if len(top_10) == 10:
                 break
-    # Create a list of dictionaries
-    data = []
-    for university, similarity in top_10:
-        data.append({'university': university, 'similarity': similarity})
-
-    # Convert the list of dictionaries to JSON
-    json_data = json.dumps(data)
 
     # Return the JSON data
-    return jsonify(json_data)
+    return jsonify(fetch(added_universities))
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
 
 
 
