@@ -1,7 +1,6 @@
 import sqlite3
 import json
 
-rupee = "\u20B9"
 def fetch(universities_names):
 
     conn = sqlite3.connect(r'D:\Uni_Recommender\Unixplore.db')
@@ -26,15 +25,15 @@ def fetch(universities_names):
         
         # Create a dictionary to store the additional data for the university
         additional_data = {
-            'description': uni_data[0],  # Assuming the first column is Uni_desc
-            'acceptance_rate': uni_data[1],  # Assuming the second column is Uni_acceptance_rate
-            'test': uni_data[2],  # Assuming the third column is Uni_test_score
-            'test_score':uni_data[3],
+             'description': uni_data[0],  # Assuming the first column is Uni_desc
+             'acceptance_rate': uni_data[1],  # Assuming the second column is Uni_acceptance_rate
+             'test': uni_data[2],  # Assuming the third column is Uni_test_score
+             'test_score':uni_data[3],
             'image': uni_data[4],  # Assuming the fourth column is Uni_image
-            'courses':[course[0] for course in uni_courses],
-            'stream':[stream[1] for stream in uni_courses],
-            'duration':[duration[2] for duration in uni_courses],
-            'fees':[fees[3].replace('?','Rs. ') for fees in uni_courses if '?' in fees[3]]
+             'courses':[course[0] for course in uni_courses],
+             'stream':[stream[1] for stream in uni_courses],
+             'duration':[duration[2] for duration in uni_courses],
+             'fees':[fees[3].replace('?','Rs. ') for fees in uni_courses if '?' in fees[3]]
         }
         
         # Add the additional data to the dictionary for the university
