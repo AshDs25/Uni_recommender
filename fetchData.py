@@ -1,6 +1,6 @@
 import sqlite3
 import json
-
+ 
 def fetch(universities_names):
 
     conn = sqlite3.connect(r'D:\Uni_Recommender\Unixplore.db')

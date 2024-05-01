@@ -79,7 +79,7 @@ def euclidean(x,y):
 
 def euclidean_sim(user_score, user_dur,user_fee):
    for i in range(len(test_score)):
-    sim = 0.2*euclidean(test_score[i],user_score) + 0.4*euclidean(duration[i],user_dur) +0.4 * euclidean(fees[i],user_fee)
+    sim = 0.4*euclidean(test_score[i],user_score) + 0.4*euclidean(duration[i],user_dur) +0.2 * euclidean(fees[i],user_fee)
     euc_sim.append(sim)
 
 
@@ -132,7 +132,7 @@ def get_top_10_universities():
         if university not in added_universities:
             top_10.append((university, similarity))
             added_universities.add(university)
-            if len(top_10) == 10:
+            if len(top_10) == 5:
                 break
 
     # Return the JSON data
